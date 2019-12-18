@@ -1,4 +1,3 @@
-
 import 'package:app/model/route.dart';
 import 'package:app/page/route_page.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +22,19 @@ class _HomePageState extends State<HomePage> {
   var dariId;
   var keName;
   var keId;
+  var _dariName;
+  var _dariId;
+  var _keName;
+  var _keId;
+  int _dari_ke;
   var date = TextEditingController();
+
+  var sult;
+  var sult2;
+  var _sult;
+  var _sult2;
+
+
 
   final format = DateFormat("yyyy-MM-dd");
 
@@ -149,7 +160,62 @@ class _HomePageState extends State<HomePage> {
                                   onTap: () {
                                     awaitReturndata(context);
                                   }),
-                              Divider(),
+                              Container(
+                                  margin: EdgeInsets.only(right: 10),
+                                  child: Center(
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                      children: <Widget>[
+                                        Container(
+                                          width: 250,
+                                          child: Divider(
+                                            color: Colors.grey,
+                                          ),
+
+                                        ),
+                                        SizedBox(height: 5,),
+                                        Padding(
+                                          padding: const EdgeInsets.only(right: 20),
+                                          child: Container(
+                                            child: CircleAvatar(
+                                              child: IconButton(
+                                                icon: Icon(Icons.import_export),
+                                                onPressed: (){
+                                                  if(_dari_ke == 0){
+                                                    _dari_ke = 1;
+                                                    setState(() {
+                                                      _dariName = dariName;
+                                                      _dariId = dariId;
+                                                      dariName = keName;
+                                                      dariId = keId;
+                                                      _keName = keName;
+                                                      _keId = keId;
+                                                      keName = _dariName;
+
+                                                    });
+
+                                                  }else{
+                                                    _dari_ke = 0;
+                                                    setState(() {
+                                                      dariName = _dariName;
+                                                      dariId = _dariId;
+                                                      keName = _keName;
+                                                      keId = _keId;
+
+                                                      sult2 = _sult2;
+//
+                                                    });
+
+                                                  }
+                                                },
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                              ),
                               Container(
                                 margin: EdgeInsets.only(left: 20, top: 0),
                                 child: Row(
