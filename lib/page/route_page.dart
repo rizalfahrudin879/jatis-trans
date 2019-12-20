@@ -34,15 +34,14 @@ class _RoutePageState extends State<RoutePage> {
     getData();
   }
 
-  // return new Container(
-  //             child: Card(
-  //                 child: Text(
-  //                     '${data[i]['dari_id']} - ${data[i]['ke_id']}-  ${data[i]['class_name']} - ${data[i]['price']} - ${data[i]['time_dari']}')));
-  //       }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+
+        title: Text('Pilih bus'),
+        backgroundColor: Colors.orange[400],
+      ),
       body: data == null ? Center(child: CircularProgressIndicator(),) :(data.isEmpty)
           ? Center(
               child: Text('route tidak tersedia, silahkan memilih route lain'),
@@ -51,48 +50,41 @@ class _RoutePageState extends State<RoutePage> {
               itemCount: data.length,
               itemBuilder: (context, i) {
                 return Container(
-                  child: Card(
-                      child: Text(
-                          '${data[i]['dari_id']} - ${data[i]['ke_id']}-  ${data[i]['class_name']} - ${data[i]['price']} - ${data[i]['time_dari']}')),
+                  margin: EdgeInsets.only(right: 5,left: 5),
+                  child: GestureDetector(
+                    onTap: (){},
+                    child: Card(
+                        child: ListTile(
+                          leading: Image.asset('images/promo02.png'),
+                            title: Center(child: Text('Jatis Trans',style: TextStyle(fontWeight: FontWeight.w700),)),
+
+                            subtitle: Column(
+                              children: <Widget>[
+                                SizedBox(height: 10),
+                                Text('${data[i]['class_name']}'),
+                                Text('${data[i]['dari_id']}'),
+                                Icon(Icons.arrow_downward),
+                                Text('${data[i]['ke_id']}'),
+
+                              ],
+                            ),
+                            trailing: Container(
+                              child: Column(
+                                children: <Widget>[
+
+                                  Text('Rp.${data[i]['price']}',style: TextStyle(color: Colors.orange,fontWeight: FontWeight.w700),),
+                                ],
+
+                              ),
+                            ),
+                           // Text('Rp.${data[i]['price']}'),
+
+                            //'${data[i]['dari_id']} - ${data[i]['ke_id']}-  ${data[i]['class_name']} - ${data[i]['price']} - ${data[i]['time_dari']}'
+                        ),
+                    ),
+                  ),
                 );
               }),
     );
   }
 }
-
-// class ItemList extends StatelessWidget {
-//   final List list;
-//   ItemList({this.list});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return new ListView.builder(
-//       itemCount: list == null ? 0 : list.length,
-//       itemBuilder: (context, i) {
-//         return new Container(
-//           padding: const EdgeInsets.only(right: 5, left: 5),
-//           child: new GestureDetector(
-//             onTap: () {
-//               //'${list[i]['city_name']} - ${list[i]['pool_name']} '
-//               Navigator.pop(
-//                 context,
-//                 '${list[i]['city_name']} - ${list[i]['dari_id']}',
-//               );
-//             },
-//             child: Card(
-//               child: new ListTile(
-//                 title: new Text('${list[i]['dari_id']} - ${list[i]['ke_id']} '),
-//                 leading: Icon(
-//                   Icons.location_city,
-//                   color: Colors.blue[900],
-//                 ),
-//                 // leading: new Icon(Icons.account_circle,color: Colors.deepPurple,),
-//                 // subtitle: new Text("Alamat: ${list[i]['alamat']}"),
-//               ),
-//             ),
-//           ),
-//         );
-//       },
-//     );
-//   }
-// }

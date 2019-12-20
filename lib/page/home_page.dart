@@ -29,13 +29,6 @@ class _HomePageState extends State<HomePage> {
   int _dari_ke;
   var date = TextEditingController();
 
-  var sult;
-  var sult2;
-  var _sult;
-  var _sult2;
-
-
-
   final format = DateFormat("yyyy-MM-dd");
 
   void awaitReturndata(BuildContext context) async {
@@ -113,12 +106,12 @@ class _HomePageState extends State<HomePage> {
                             return Builder(
                               builder: (BuildContext context) {
                                 return Container(
-                                    //  height: 70,
+                                     height: 70,
                                     // width: double.infinity,
                                     //width: MediaQuery.of(context).size.width,
 
                                     margin: EdgeInsets.symmetric(
-                                        horizontal: 10, vertical: 10),
+                                        horizontal: 30, vertical: 30),
                                     // padding: EdgeInsets.only(right: 20,left: 20),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(5),
@@ -175,7 +168,7 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                         SizedBox(height: 5,),
                                         Padding(
-                                          padding: const EdgeInsets.only(right: 20),
+                                          padding: const EdgeInsets.only(right: 15),
                                           child: Container(
                                             child: CircleAvatar(
                                               child: IconButton(
@@ -202,8 +195,6 @@ class _HomePageState extends State<HomePage> {
                                                       keName = _keName;
                                                       keId = _keId;
 
-                                                      sult2 = _sult2;
-//
                                                     });
 
                                                   }
@@ -239,7 +230,9 @@ class _HomePageState extends State<HomePage> {
                                   onTap: () {
                                     awaitReturndata2(context);
                                   }),
-                              Divider(),
+                              Divider(
+                                color: Colors.grey,
+                              ),
                               Container(
                                 margin: EdgeInsets.only(left: 20, top: 0),
                                 child: Row(
