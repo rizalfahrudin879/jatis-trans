@@ -1,4 +1,3 @@
-
 import 'package:app/model/route.dart';
 import 'package:app/page/route_page.dart';
 import 'package:flutter/material.dart';
@@ -23,9 +22,22 @@ class _HomePageState extends State<HomePage> {
   var dariId;
   var keName;
   var keId;
+  var _dariName;
+  var _dariId;
+  var _keName;
+  var _keId;
+  int dariKe;
+
   var date = TextEditingController();
 
   final format = DateFormat("yyyy-MM-dd");
+  @override
+  void initState() {
+    super.initState();
+    setState(() {
+      dariKe = 0;
+    });
+  }
 
   void awaitReturndata(BuildContext context) async {
     final result = await Navigator.push(
@@ -37,7 +49,7 @@ class _HomePageState extends State<HomePage> {
 
     setState(() {
       dariName = '${result['city_name']} - ${result['pool_name']} ';
-      dariId =  '${result['pool_id']}';
+      dariId = '${result['pool_id']}';
     });
   }
 
@@ -102,18 +114,21 @@ class _HomePageState extends State<HomePage> {
                             return Builder(
                               builder: (BuildContext context) {
                                 return Container(
-                                    //  height: 70,
-                                    // width: double.infinity,
-                                    //width: MediaQuery.of(context).size.width,
+                                  height: 70,
+                                  // width: double.infinity,
+                                  //width: MediaQuery.of(context).size.width,
 
-                                    margin: EdgeInsets.symmetric(
-                                        horizontal: 10, vertical: 10),
-                                    // padding: EdgeInsets.only(right: 20,left: 20),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      color: Colors.transparent,
-                                    ),
-                                    child: Image.asset((i)));
+                                  margin: EdgeInsets.symmetric(
+                                      horizontal: 10, vertical: 10),
+                                  // padding: EdgeInsets.only(right: 20,left: 20),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                    color: Colors.transparent,
+                                  ),
+                                  child: Image.asset(
+                                    (i),
+                                  ),
+                                );
                               },
                             );
                           }).toList(),
@@ -149,7 +164,58 @@ class _HomePageState extends State<HomePage> {
                                   onTap: () {
                                     awaitReturndata(context);
                                   }),
-                              Divider(),
+                              Container(
+                                  margin: EdgeInsets.only(right: 10),
+                                  child: Center(
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: <Widget>[
+                                        Container(
+                                          width: 250,
+                                          child: Divider(
+                                            color: Colors.grey,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(right: 0),
+                                          child: Container(
+                                            child: CircleAvatar(
+                                              child: IconButton(
+                                                icon: Icon(Icons.import_export),
+                                                onPressed: () {
+                                                  if (dariKe == 0) {
+                                                    dariKe = 1;
+                                                    setState(() {
+                                                      _dariName = dariName;
+                                                      _dariId = dariId;
+                                                      dariName = keName;
+                                                      dariId = keId;
+                                                      _keName = keName;
+                                                      _keId = keId;
+                                                      keName = _dariName;
+                                                    });
+                                                  } else {
+                                                    dariKe = 0;
+                                                    setState(() {
+                                                      dariName = _dariName;
+                                                      dariId = _dariId;
+                                                      keName = _keName;
+                                                      keId = _keId;
+                                                    });
+                                                  }
+                                                },
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  )),
                               Container(
                                 margin: EdgeInsets.only(left: 20, top: 0),
                                 child: Row(
@@ -173,7 +239,9 @@ class _HomePageState extends State<HomePage> {
                                   onTap: () {
                                     awaitReturndata2(context);
                                   }),
-                              Divider(),
+                              Divider(
+                                color: Colors.grey,
+                              ),
                               Container(
                                 margin: EdgeInsets.only(left: 20, top: 0),
                                 child: Row(
@@ -240,18 +308,20 @@ class _HomePageState extends State<HomePage> {
                   ),
                   padding: EdgeInsets.symmetric(horizontal: 70, vertical: 15),
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(25)),
+                    borderRadius: BorderRadius.circular(25),
+                  ),
                   onPressed: () {
                     debugPrint('${date.text}');
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (contex) => RoutePage(
-                            dariId: '$dariId',
-                            keId: '$keId',
-                            date: '${date.text}',
-                          ),
-                        ));
+                      context,
+                      MaterialPageRoute(
+                        builder: (contex) => RoutePage(
+                          dariId: '$dariId',
+                          keId: '$keId',
+                          date: '${date.text}',
+                        ),
+                      ),
+                    );
                   }),
             ],
           ),

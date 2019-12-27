@@ -69,7 +69,6 @@ class UserRepository {
   Future<dynamic> searchPool({String filter}) async {
     String sult = filter;
     var res;
-    print(sult);
     await http.get(searchPoolURL + '?pool_name=$sult').then((response) {
       res = response.body;
     });
