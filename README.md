@@ -2,14 +2,14 @@
 Flutter
 
 ## Demo Login
-email : demo@demo.com, password  : demo
+Email: demo@demo.com, Password: demo
 
 ## Demo Cari Bus/Route
-demo dari: Jakarta - Pulo Gadung, ke Bandung - Siliwangi Trans, Tanggal 2019-12-18
+Demo dari: Jakarta - Pulo Gadung, ke: Bandung - Siliwangi Trans, Tanggal: 2019-12-18
   
 ## Installation
 ```
-https://github.com/rizalfahrudin879/DicodingSubmissionAndroidPemula.git
+https://github.com/rizalfahrudin879/jatis-trans.git
 ```
 ```
 flutter pub get
