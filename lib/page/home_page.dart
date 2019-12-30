@@ -79,7 +79,7 @@ class _HomePageState extends State<HomePage> {
                   ClipPath(
                     clipper: OvalBottomBorderClipper(),
                     child: Container(
-                      height: 300,
+                      height: 350,
                       width: double.infinity,
                       color: Colors.orange[400],
                     ),
@@ -89,7 +89,6 @@ class _HomePageState extends State<HomePage> {
                       Container(
                         width: double.infinity,
                         child: CarouselSlider(
-                          //  aspectRatio: 16/9,
                           viewportFraction: 0.8,
                           initialPage: 0,
                           enableInfiniteScroll: true,
@@ -98,14 +97,9 @@ class _HomePageState extends State<HomePage> {
                           autoPlayInterval: Duration(seconds: 2),
                           autoPlayAnimationDuration:
                               Duration(milliseconds: 800),
-                          // autoPlayCurve: Curve.fastOutSlowIn,
                           pauseAutoPlayOnTouch: Duration(seconds: 5),
                           enlargeCenterPage: true,
-                          // onPageChanged: callbackFunction,
                           scrollDirection: Axis.horizontal,
-
-                          //  height: 150.0,
-
                           items: [
                             'images/promo01.png',
                             'images/promo02.png',
@@ -115,9 +109,6 @@ class _HomePageState extends State<HomePage> {
                               builder: (BuildContext context) {
                                 return Container(
                                   height: 70,
-                                  // width: double.infinity,
-                                  //width: MediaQuery.of(context).size.width,
-
                                   margin: EdgeInsets.symmetric(
                                       horizontal: 10, vertical: 10),
                                   // padding: EdgeInsets.only(right: 20,left: 20),
@@ -151,8 +142,6 @@ class _HomePageState extends State<HomePage> {
                                   ],
                                 ),
                               ),
-                              //Text("city_name: ${widget.list[widget.index]['city_name']? 'tes isi ' : 'tes kosong'}")
-
                               new ListTile(
                                   title: new Text((dariName == null)
                                       ? 'Keberangkatan'
@@ -227,8 +216,7 @@ class _HomePageState extends State<HomePage> {
                                   ],
                                 ),
                               ),
-                              //(widget.list[widget.index]['city_name'] == null) ? Text('Masukan kota keberangkatan') : Text('${widget.list[widget.index]['city_name']} - ${widget.list[widget.index]['pool_name']}'),
-                              new ListTile(
+                              ListTile(
                                   title: Text((keName == null)
                                       ? 'Tujuan'
                                       : keName.toString()),

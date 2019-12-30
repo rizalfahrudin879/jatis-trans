@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 import 'payment_page.dart';
 
 class ReviewPage extends StatefulWidget {
@@ -12,6 +12,23 @@ class ReviewPage extends StatefulWidget {
 }
 
 class _ReviewPageState extends State<ReviewPage> {
+  var email;
+  var userName;
+  int hargaUnik = -232;
+  getValue() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      userName = prefs.getString('username');
+      email = prefs.getString('email');
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getValue();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -169,7 +186,7 @@ class _ReviewPageState extends State<ReviewPage> {
                             Row(
                               children: <Widget>[
                                 Text(
-                                  "Rizal Fahrudin",
+                                  "$userName",
                                   style: TextStyle(
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold),
@@ -179,7 +196,7 @@ class _ReviewPageState extends State<ReviewPage> {
                             Row(
                               children: <Widget>[
                                 Text(
-                                  "rizalfahrudin87@gmail.com",
+                                  "$email",
                                   style: TextStyle(
                                     color: Color(0xff8a8a8a),
                                   ),
@@ -227,12 +244,46 @@ class _ReviewPageState extends State<ReviewPage> {
                                   "Jatis Trans - VIP Shuttle x 3",
                                   style: TextStyle(
                                     fontSize: 15,
-                                    color: Color(0xff8a8a8a),
+                                    // color: Color(0xff8a8a8a),
                                   ),
                                 ),
                                 Text("Rp. ${widget.price}"),
                               ],
                             ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Text(
+                                  "Kode Unik",
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    // color: Colors.green,
+                                  ),
+                                ),
+                                Text(
+                                  "Rp. $hargaUnik",
+                                  style: TextStyle(color: Colors.green),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Text(
+                                  "Harga Total",
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  "Rp. ${widget.price + hargaUnik}",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            )
                           ],
                         ),
                       )),
@@ -253,9 +304,10 @@ class _ReviewPageState extends State<ReviewPage> {
                         style: TextStyle(fontSize: 15, color: Colors.white),
                       ),
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(
-                          builder: (context) => PaymentPage()
-                        ));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => PaymentPage()));
                       },
                     ),
                   )
